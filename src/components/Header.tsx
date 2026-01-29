@@ -3,7 +3,7 @@ import Logo from "./Logo";
 
 export default function Header() {
   return (
-    <header className="bg-black text-white">
+    <header className="bg-black text-white sticky top-0">
       <section className="container mx-auto flex items-center justify-between p-4">
         <Logo />
         <nav className="text-sm font-semibold">
