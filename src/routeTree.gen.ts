@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ReservationIndexRouteImport } from './routes/reservation/index'
 import { Route as ItemsIndexRouteImport } from './routes/items/index'
 import { Route as GalleryIndexRouteImport } from './routes/gallery/index'
+import { Route as EventsIndextRouteImport } from './routes/events/indext'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,15 +35,22 @@ const GalleryIndexRoute = GalleryIndexRouteImport.update({
   path: '/gallery/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventsIndextRoute = EventsIndextRouteImport.update({
+  id: '/events/indext',
+  path: '/events/indext',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/events/indext': typeof EventsIndextRoute
   '/gallery/': typeof GalleryIndexRoute
   '/items/': typeof ItemsIndexRoute
   '/reservation/': typeof ReservationIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/events/indext': typeof EventsIndextRoute
   '/gallery': typeof GalleryIndexRoute
   '/items': typeof ItemsIndexRoute
   '/reservation': typeof ReservationIndexRoute
@@ -50,20 +58,28 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/events/indext': typeof EventsIndextRoute
   '/gallery/': typeof GalleryIndexRoute
   '/items/': typeof ItemsIndexRoute
   '/reservation/': typeof ReservationIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/gallery/' | '/items/' | '/reservation/'
+  fullPaths: '/' | '/events/indext' | '/gallery/' | '/items/' | '/reservation/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/gallery' | '/items' | '/reservation'
-  id: '__root__' | '/' | '/gallery/' | '/items/' | '/reservation/'
+  to: '/' | '/events/indext' | '/gallery' | '/items' | '/reservation'
+  id:
+    | '__root__'
+    | '/'
+    | '/events/indext'
+    | '/gallery/'
+    | '/items/'
+    | '/reservation/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EventsIndextRoute: typeof EventsIndextRoute
   GalleryIndexRoute: typeof GalleryIndexRoute
   ItemsIndexRoute: typeof ItemsIndexRoute
   ReservationIndexRoute: typeof ReservationIndexRoute
@@ -99,11 +115,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/events/indext': {
+      id: '/events/indext'
+      path: '/events/indext'
+      fullPath: '/events/indext'
+      preLoaderRoute: typeof EventsIndextRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EventsIndextRoute: EventsIndextRoute,
   GalleryIndexRoute: GalleryIndexRoute,
   ItemsIndexRoute: ItemsIndexRoute,
   ReservationIndexRoute: ReservationIndexRoute,
