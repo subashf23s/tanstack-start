@@ -1,3 +1,4 @@
+import ReservationPage from "@/components/pages/reservation";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/reservation/")({
@@ -5,5 +6,5 @@ export const Route = createFileRoute("/reservation/")({
 });
 
 function RouteComponent() {
-  return <div>Hello "/reservation/"!</div>;
+  return <ReservationPage />;
 }
