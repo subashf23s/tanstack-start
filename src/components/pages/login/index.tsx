@@ -2,12 +2,29 @@ import Button from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import Input from "@/components/ui/input";
+import { loginFn } from "@/util/functions/login";
+import { useServerFn } from "@tanstack/react-start";
+import { FormEvent } from "react";
 
 const LoginPage = () => {
+  const submit = useServerFn(loginFn);
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const data = {
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
+    };
+    try {
+      await submit({ data });
+    } catch (error) {
+      console.log("Error : ", error);
+    }
+  };
   return (
     <main className="container mx-auto py-8 grid place-content-center">
       <Card>
-        <form>
+        <form onSubmit={handleSubmit} method="POST">
           <FieldGroup>
             <Field>
               <FieldLabel htmlFor="email">Email</FieldLabel>
@@ -22,7 +39,7 @@ const LoginPage = () => {
                 placeholder="Password"
               />
             </Field>
-            <Button>Login</Button>
+            <Button type="submit">Login</Button>
           </FieldGroup>
         </form>
       </Card>
