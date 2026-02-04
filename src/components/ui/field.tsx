@@ -1,10 +1,14 @@
 import { ComponentProps } from "react";
 
-export const Field = ({
+export const FieldGroup = ({
   className = "",
   ...props
-}: ComponentProps<"fieldset">) => {
-  return <fieldset className={`flex flex-col ${className}`} {...props} />;
+}: ComponentProps<"div">) => {
+  return <div className={`flex flex-col gap-4 ${className}`} {...props} />;
+};
+
+export const Field = ({ className = "", ...props }: ComponentProps<"div">) => {
+  return <div className={`flex flex-col ${className}`} {...props} />;
 };
 
 export const FieldLabel = ({

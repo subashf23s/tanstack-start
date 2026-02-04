@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ReservationIndexRouteImport } from './routes/reservation/index'
+import { Route as LoginIndexRouteImport } from './routes/login/index'
 import { Route as ItemsIndexRouteImport } from './routes/items/index'
 import { Route as GalleryIndexRouteImport } from './routes/gallery/index'
 import { Route as EventsIndexRouteImport } from './routes/events/index'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const ReservationIndexRoute = ReservationIndexRouteImport.update({
   id: '/reservation/',
   path: '/reservation/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginIndexRoute = LoginIndexRouteImport.update({
+  id: '/login/',
+  path: '/login/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ItemsIndexRoute = ItemsIndexRouteImport.update({
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/events/': typeof EventsIndexRoute
   '/gallery/': typeof GalleryIndexRoute
   '/items/': typeof ItemsIndexRoute
+  '/login/': typeof LoginIndexRoute
   '/reservation/': typeof ReservationIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/events': typeof EventsIndexRoute
   '/gallery': typeof GalleryIndexRoute
   '/items': typeof ItemsIndexRoute
+  '/login': typeof LoginIndexRoute
   '/reservation': typeof ReservationIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/events/': typeof EventsIndexRoute
   '/gallery/': typeof GalleryIndexRoute
   '/items/': typeof ItemsIndexRoute
+  '/login/': typeof LoginIndexRoute
   '/reservation/': typeof ReservationIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
@@ -79,16 +88,25 @@ export interface FileRouteTypes {
     | '/events/'
     | '/gallery/'
     | '/items/'
+    | '/login/'
     | '/reservation/'
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/events' | '/gallery' | '/items' | '/reservation' | '/api/auth/$'
+  to:
+    | '/'
+    | '/events'
+    | '/gallery'
+    | '/items'
+    | '/login'
+    | '/reservation'
+    | '/api/auth/$'
   id:
     | '__root__'
     | '/'
     | '/events/'
     | '/gallery/'
     | '/items/'
+    | '/login/'
     | '/reservation/'
     | '/api/auth/$'
   fileRoutesById: FileRoutesById
@@ -98,6 +116,7 @@ export interface RootRouteChildren {
   EventsIndexRoute: typeof EventsIndexRoute
   GalleryIndexRoute: typeof GalleryIndexRoute
   ItemsIndexRoute: typeof ItemsIndexRoute
+  LoginIndexRoute: typeof LoginIndexRoute
   ReservationIndexRoute: typeof ReservationIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
@@ -116,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/reservation'
       fullPath: '/reservation/'
       preLoaderRoute: typeof ReservationIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login/': {
+      id: '/login/'
+      path: '/login'
+      fullPath: '/login/'
+      preLoaderRoute: typeof LoginIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/items/': {
@@ -154,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   EventsIndexRoute: EventsIndexRoute,
   GalleryIndexRoute: GalleryIndexRoute,
   ItemsIndexRoute: ItemsIndexRoute,
+  LoginIndexRoute: LoginIndexRoute,
   ReservationIndexRoute: ReservationIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
