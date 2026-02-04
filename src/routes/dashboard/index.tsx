@@ -1,9 +1,14 @@
-import { createFileRoute } from '@tanstack/react-router'
+import DashboardPage from "@/components/pages/dashboard";
+import { authMiddleware } from "@/util/middleware/auth";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/dashboard/')({
+export const Route = createFileRoute("/dashboard/")({
   component: RouteComponent,
-})
+  server: {
+    middleware: [authMiddleware],
+  },
+});
 
 function RouteComponent() {
-  return <div>Hello "/dashboard/"!</div>
+  return <DashboardPage />;
 }

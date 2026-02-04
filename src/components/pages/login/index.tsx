@@ -3,11 +3,15 @@ import { Card } from "@/components/ui/card";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import Input from "@/components/ui/input";
 import { loginFn } from "@/util/functions/login";
+import { useNavigate } from "@tanstack/react-router";
+// import { signUpFn } from "@/util/functions/signup";
 import { useServerFn } from "@tanstack/react-start";
 import { FormEvent } from "react";
 
 const LoginPage = () => {
   const submit = useServerFn(loginFn);
+  // const signup = useServerFn(signUpFn);
+  const navigate = useNavigate();
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -16,7 +20,10 @@ const LoginPage = () => {
       password: formData.get("password") as string,
     };
     try {
-      await submit({ data });
+      const response = await submit({ data });
+      if (response.success) {
+        navigate({ to: "/dashboard" });
+      }
     } catch (error) {
       console.log("Error : ", error);
     }
