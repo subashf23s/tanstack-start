@@ -14,6 +14,7 @@ import { Route as ReservationIndexRouteImport } from './routes/reservation/index
 import { Route as ItemsIndexRouteImport } from './routes/items/index'
 import { Route as GalleryIndexRouteImport } from './routes/gallery/index'
 import { Route as EventsIndexRouteImport } from './routes/events/index'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const EventsIndexRoute = EventsIndexRouteImport.update({
   path: '/events/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/gallery/': typeof GalleryIndexRoute
   '/items/': typeof ItemsIndexRoute
   '/reservation/': typeof ReservationIndexRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryIndexRoute
   '/items': typeof ItemsIndexRoute
   '/reservation': typeof ReservationIndexRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,27 @@ export interface FileRoutesById {
   '/gallery/': typeof GalleryIndexRoute
   '/items/': typeof ItemsIndexRoute
   '/reservation/': typeof ReservationIndexRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/events/' | '/gallery/' | '/items/' | '/reservation/'
+  fullPaths:
+    | '/'
+    | '/events/'
+    | '/gallery/'
+    | '/items/'
+    | '/reservation/'
+    | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/events' | '/gallery' | '/items' | '/reservation'
-  id: '__root__' | '/' | '/events/' | '/gallery/' | '/items/' | '/reservation/'
+  to: '/' | '/events' | '/gallery' | '/items' | '/reservation' | '/api/auth/$'
+  id:
+    | '__root__'
+    | '/'
+    | '/events/'
+    | '/gallery/'
+    | '/items/'
+    | '/reservation/'
+    | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +99,7 @@ export interface RootRouteChildren {
   GalleryIndexRoute: typeof GalleryIndexRoute
   ItemsIndexRoute: typeof ItemsIndexRoute
   ReservationIndexRoute: typeof ReservationIndexRoute
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +139,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +155,7 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryIndexRoute: GalleryIndexRoute,
   ItemsIndexRoute: ItemsIndexRoute,
   ReservationIndexRoute: ReservationIndexRoute,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
