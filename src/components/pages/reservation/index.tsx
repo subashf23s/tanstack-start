@@ -1,17 +1,18 @@
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldLabel } from "@/components/ui/field";
 import InputDate from "@/components/ui/input-date";
 import InputTime from "@/components/ui/input-time";
 
-const ReservationPage = ({ time }: { time: string }) => {
+const ReservationPage = () => {
   return (
     <section className="container mx-auto py-4">
       <h1 className="border-l-5 border-l-yellow-500 pl-4 text-3xl font-semibold">
         Make A Reservation
       </h1>
-      <h1>current time from server : {time}</h1>
       <Card className="mt-4">
-        <CardTitle>Pick your date and time</CardTitle>
+        <CardHeader>
+          <CardTitle>Pick your date and time</CardTitle>
+        </CardHeader>
         <CardContent>
           <form className="flex gap-4">
             <Field>
