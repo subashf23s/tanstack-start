@@ -1,7 +1,13 @@
-import Button from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
-import Input from "@/components/ui/input";
+import { Input } from "@/components/ui/input";
 import { loginFn } from "@/util/functions/login";
 import { useNavigate } from "@tanstack/react-router";
 // import { signUpFn } from "@/util/functions/signup";
@@ -29,27 +35,44 @@ const LoginPage = () => {
     }
   };
   return (
-    <main className="container mx-auto py-8 grid place-content-center">
-      <Card>
-        <form onSubmit={handleSubmit} method="POST">
-          <FieldGroup>
-            <Field>
-              <FieldLabel htmlFor="email">Email</FieldLabel>
-              <Input id="email" name="email" type="email" placeholder="Email" />
-            </Field>
-            <Field>
-              <FieldLabel htmlFor="password">Password</FieldLabel>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="Password"
-              />
-            </Field>
-            <Button type="submit">Login</Button>
-          </FieldGroup>
-        </form>
-      </Card>
+    <main className="container mx-auto py-8">
+      <section className="flex items-center justify-center p-6 md:p-10">
+        <div className="w-full max-w-sm">
+          <Card>
+            <CardHeader>
+              <CardTitle>Login to your account</CardTitle>
+              <CardDescription>
+                Enter your email below to login to your account
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit}>
+                <FieldGroup>
+                  <Field>
+                    <FieldLabel htmlFor="email">Email</FieldLabel>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="Email"
+                    />
+                  </Field>
+                  <Field>
+                    <FieldLabel htmlFor="password">Password</FieldLabel>
+                    <Input
+                      id="password"
+                      name="password"
+                      type="password"
+                      placeholder="Password"
+                    />
+                  </Field>
+                  <Button type="submit">Login</Button>
+                </FieldGroup>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
     </main>
   );
 };
