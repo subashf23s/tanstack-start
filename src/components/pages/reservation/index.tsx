@@ -1,4 +1,6 @@
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { DatePicker } from "@/components/ui/date-picker";
 import { Field, FieldLabel } from "@/components/ui/field";
 import InputDate from "@/components/ui/input-date";
 import InputTime from "@/components/ui/input-time";
@@ -14,6 +16,10 @@ const ReservationPage = () => {
           <CardTitle>Pick your date and time</CardTitle>
         </CardHeader>
         <CardContent>
+          <div>
+            <DatePicker />
+            <Button>Check Availability</Button>
+          </div>
           <form className="flex gap-4">
             <Field>
               <FieldLabel htmlFor="date">Select Date</FieldLabel>

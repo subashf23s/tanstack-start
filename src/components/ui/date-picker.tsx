@@ -18,9 +18,13 @@ export function DatePicker() {
         <Button
           variant="outline"
           data-empty={!date}
-          className="data-[empty=true]:text-muted-foreground justify-between text-left font-normal"
+          className="data-[empty=true]:text-muted-foreground justify-between text-left font-normal min-w-fit w-1/4"
         >
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
+          {date ? (
+            format(date, "PPP")
+          ) : (
+            <span>Pick a date to check availability</span>
+          )}
           <ChevronDownIcon />
         </Button>
       </PopoverTrigger>
