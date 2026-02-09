@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 import { authClient } from "@/lib/auth-client";
 import { useNavigate } from "@tanstack/react-router";
+import AppSidebar from "./app-sidebar";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -14,11 +20,19 @@ const DashboardPage = () => {
     });
   };
   return (
-    <main className="container mx-auto py-8">
-      <section>
-        <Button onClick={handleSignOut}>Logout</Button>
-      </section>
-    </main>
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <header>
+          <SidebarTrigger className="-ml-1" />
+        </header>
+        <main className="container mx-auto py-8">
+          <section>
+            <Button onClick={handleSignOut}>Logout</Button>
+          </section>
+        </main>
+      </SidebarInset>
+    </SidebarProvider>
   );
 };
 
