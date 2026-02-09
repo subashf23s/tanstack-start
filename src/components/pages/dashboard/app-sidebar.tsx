@@ -8,7 +8,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Link } from "@tanstack/react-router";
-import { Home } from "lucide-react";
+import { Home, LayoutList } from "lucide-react";
 import { ComponentProps } from "react";
 
 const navigations = [
@@ -16,6 +16,11 @@ const navigations = [
     title: "Home",
     url: "/dashboard",
     icon: Home,
+  },
+  {
+    title: "Reservation",
+    url: "/dashboard/reservation",
+    icon: LayoutList,
   },
 ];
 
@@ -37,6 +42,7 @@ const AppSidebar = ({ ...props }: ComponentProps<typeof Sidebar>) => {
                     className:
                       "bg-sidebar-accent font-medium text-sidebar-accent-foreground",
                   }}
+                  activeOptions={{ exact: true }}
                 >
                   <nav.icon />
                   {nav.title}

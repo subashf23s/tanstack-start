@@ -5,7 +5,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { authClient } from "@/lib/auth-client";
-import { useNavigate } from "@tanstack/react-router";
+import { Outlet, useNavigate } from "@tanstack/react-router";
 import AppSidebar from "./app-sidebar";
 import { LogOut } from "lucide-react";
 
@@ -34,8 +34,8 @@ const DashboardPage = () => {
             <LogOut />
           </Button>
         </header>
-        <main className="container mx-auto py-8">
-          <section></section>
+        <main className="p-8">
+          <Outlet />
         </main>
       </SidebarInset>
     </SidebarProvider>
