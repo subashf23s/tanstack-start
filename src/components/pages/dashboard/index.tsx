@@ -7,6 +7,7 @@ import {
 import { authClient } from "@/lib/auth-client";
 import { useNavigate } from "@tanstack/react-router";
 import AppSidebar from "./app-sidebar";
+import { LogOut } from "lucide-react";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -23,13 +24,18 @@ const DashboardPage = () => {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header>
+        <header className="flex items-center justify-between p-4 border-b">
           <SidebarTrigger className="-ml-1" />
+          <Button
+            onClick={handleSignOut}
+            size={"icon"}
+            className="cursor-pointer"
+          >
+            <LogOut />
+          </Button>
         </header>
         <main className="container mx-auto py-8">
-          <section>
-            <Button onClick={handleSignOut}>Logout</Button>
-          </section>
+          <section></section>
         </main>
       </SidebarInset>
     </SidebarProvider>
