@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -35,45 +36,48 @@ const LoginPage = () => {
     }
   };
   return (
-    <main className="container mx-auto py-8">
-      <section className="flex items-center justify-center p-6 md:p-10">
-        <div className="w-full max-w-sm">
-          <Card>
-            <CardHeader>
-              <CardTitle>Login to your account</CardTitle>
-              <CardDescription>
-                Enter your email below to login to your account
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit}>
-                <FieldGroup>
-                  <Field>
-                    <FieldLabel htmlFor="email">Email</FieldLabel>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="Email"
-                    />
-                  </Field>
-                  <Field>
-                    <FieldLabel htmlFor="password">Password</FieldLabel>
-                    <Input
-                      id="password"
-                      name="password"
-                      type="password"
-                      placeholder="Password"
-                    />
-                  </Field>
-                  <Button type="submit">Login</Button>
-                </FieldGroup>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-    </main>
+    <>
+      <Header />
+      <main className="container mx-auto py-8">
+        <section className="flex items-center justify-center p-6 md:p-10">
+          <div className="w-full max-w-sm">
+            <Card>
+              <CardHeader>
+                <CardTitle>Login to your account</CardTitle>
+                <CardDescription>
+                  Enter your email below to login to your account
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit}>
+                  <FieldGroup>
+                    <Field>
+                      <FieldLabel htmlFor="email">Email</FieldLabel>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                      />
+                    </Field>
+                    <Field>
+                      <FieldLabel htmlFor="password">Password</FieldLabel>
+                      <Input
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                      />
+                    </Field>
+                    <Button type="submit">Login</Button>
+                  </FieldGroup>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      </main>
+    </>
   );
 };
 

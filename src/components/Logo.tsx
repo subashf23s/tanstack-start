@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 const Logo = () => {
   return (
-    <Link to="/">
+    <Link to="/" className="inline-flex flex-col w-min">
       <h1 className="font-bold text-3xl leading-6 italic">
         <span className="text-yellow-500">R</span>oot
       </h1>

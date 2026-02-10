@@ -1,24 +1,26 @@
-import { Button } from "@/components/ui/button";
-import { authClient } from "@/lib/auth-client";
-import { useNavigate } from "@tanstack/react-router";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { Outlet } from "@tanstack/react-router";
+import AppSidebar from "./app-sidebar";
+import Logout from "./logout";
 
 const DashboardPage = () => {
-  const navigate = useNavigate();
-  const handleSignOut = async () => {
-    await authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          navigate({ to: "/login" });
-        },
-      },
-    });
-  };
   return (
-    <main className="container mx-auto py-8">
-      <section>
-        <Button onClick={handleSignOut}>Logout</Button>
-      </section>
-    </main>
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <header className="flex items-center justify-between p-4 border-b">
+          <SidebarTrigger className="-ml-1" />
+          <Logout />
+        </header>
+        <main className="p-8">
+          <Outlet />
+        </main>
+      </SidebarInset>
+    </SidebarProvider>
   );
 };
 
