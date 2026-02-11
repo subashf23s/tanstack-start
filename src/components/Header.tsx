@@ -56,7 +56,7 @@ const Nav = ({
     <nav
       className={cn(
         "text-sm font-semibold fixed md:relative inset-y-0 w-full md:w-auto right-0 transition-transform duration-300 ease-in-out",
-        open && "translate-x-full md:translate-x-0",
+        !open && "translate-x-full md:translate-x-0",
         className,
       )}
       {...props}
